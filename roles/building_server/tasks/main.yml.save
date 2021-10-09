@@ -1,0 +1,20 @@
+---
+# tasks file for building_server
+- name: Ensure maven-package is present
+      apt:
+        name: maven
+        state: present
+- name: Ensure maven service is started
+      shell: "mvn clean package"
+    - name: Ensure project is packaged
+      shell: "ls /root/target"
+    - name: Create a tar.gz archive of a single file
+      archive:
+        path: /root/target/hello-1.0.war
+        dest: /root/target/hello-1.0.war.tar.gz
+        format: gz
+    - name: Synchronization using rsync protocol (pull)
+        synchronize:
+          src: /root/target/hello-1.0.war.tar.gz
+          dest: rsync://root@62.84.117.3/home/usr/
+        delegate_to: 62.84.117.

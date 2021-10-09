@@ -1,0 +1,19 @@
+---
+- name: add several user
+  user:
+    name: "{{ item }}"
+    state: present
+  with_items:
+   - user1
+   - user2
+   - user3
+
+- name: install many packages
+  apt: name={{item}} state=installed
+  with_items:
+    - git
+    - mc
+    - python
+
+
+# tasks file for common

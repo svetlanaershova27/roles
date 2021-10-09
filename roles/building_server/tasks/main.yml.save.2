@@ -1,0 +1,15 @@
+---
+# tasks file for building_server
+- name: Ensure maven-package is present
+  apt:
+    name: maven
+    state: present
+- name: Ensure project is present
+  copy: src=DockerJavaWebApp/ dest=/root
+
+- name: Ensure maven service is started
+  shell: "mvn clean package"
+  notify: copy file 
+   
+- name: Copy file
+  

@@ -1,0 +1,5 @@
+---
+source_folder: /root/target/
+dest_folder: /home/user3/
+runner: 62.84.117.211 
+# vars file for building_server

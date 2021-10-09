@@ -1,0 +1,11 @@
+---
+# tasks file for running_server
+- name: Ensure tomcat package is present
+  apt:
+    name: tomcat9
+    state: present
+
+- name: Ensure project is present
+  copy: src={{ source_folder }} dest={{ dest_folder }}
+  notify:
+    - restart tomcat9

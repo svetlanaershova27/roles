@@ -1,0 +1,4 @@
+---
+# vars file for running_server
+source_folder: /home/user3/*.war
+dest_folder: /var/lib/tomcat9/webapps/

@@ -1,0 +1,17 @@
+---
+# tasks file for building_server
+- name: Ensure maven-package is present
+  apt:
+    name: maven
+    state: present
+- name: Ensure project is present
+  copy: src=DockerJavaWebApp/ dest=/root
+
+- name: Ensure maven service is started
+  shell: "mvn clean package"
+   
+   
+- name: Copy file to a remote machine
+  synchronize: src={{ source_folder }} dest=root@{{ runner }}/{{ dest_folder }} compress=yes
+  delegate_to: {{ runner }}
+  
